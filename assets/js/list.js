@@ -105,12 +105,10 @@ document.getElementById("exportExcel").addEventListener("click", () => {
     const table = document.getElementById("pengirimanTable");
     const excludeCols = [5, 6]; // indeks kolom yang mau dikecualikan (0-based)
 
-    // Buat salinan tabel sementara
     const tempTable = table.cloneNode(true);
 
     // Hapus kolom yang ingin dikecualikan
     Array.from(tempTable.rows).forEach(row => {
-        // Urut dari belakang supaya indeks tetap valid saat hapus
         excludeCols.slice().reverse().forEach(idx => {
             if (row.cells[idx]) row.deleteCell(idx);
         });
