@@ -101,6 +101,7 @@ ul li a:hover {
   max-width: 1200px;
   margin: auto;
   padding: 1rem;
+  padding-top: 100px; /* naikkan sesuai tinggi navbar */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 4rem;
