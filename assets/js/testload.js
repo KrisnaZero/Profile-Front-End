@@ -1,4 +1,4 @@
-// pastikan ini dijalankan sebagai module
+// testing load firebase
 import { db } from "./firebase-init.js";
 import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 

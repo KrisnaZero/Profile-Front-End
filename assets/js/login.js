@@ -4,10 +4,10 @@ import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/1
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
-  const emailInput = document.getElementById("username"); // sekarang ini email
+  const emailInput = document.getElementById("username"); 
   const passwordInput = document.getElementById("password");
 
-  // Toggle show/hide password
+  // hide pw
   const passwordWrapper = passwordInput.parentElement;
   const toggleBtn = document.createElement("i");
   toggleBtn.className = "ri-eye-line";

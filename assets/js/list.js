@@ -7,7 +7,7 @@ const collectionRef = collection(db, "rekap_pengiriman");
 // Fungsi terpisah untuk menyiapkan event listeners (Delete & Edit)
 function setupEventListeners() {
     
-    // --- 🗑️ Delete Listener ---
+    // del
     document.querySelectorAll(".delete-btn").forEach(btn => {
         btn.onclick = async () => {
             const id = btn.dataset.id;
@@ -24,7 +24,6 @@ function setupEventListeners() {
         };
     });
 
-    // --- ✏️ Edit Listener ---
     document.querySelectorAll(".edit-btn").forEach(btn => {
         btn.onclick = async () => {
             const id = btn.dataset.id;
@@ -54,7 +53,7 @@ function setupEventListeners() {
     });
 }
 
-// Fungsi untuk memuat dan menampilkan data pengiriman
+// get data
 async function loadPengiriman() {
     if (!tableBody) return;
     tableBody.innerHTML = ""; 
@@ -90,7 +89,6 @@ async function loadPengiriman() {
             tableBody.appendChild(tr);
         });
 
-        // Panggil event listeners setelah data dimuat
         setupEventListeners();
 
     } catch (error) {
@@ -98,15 +96,13 @@ async function loadPengiriman() {
         alert("Gagal memuat data dari database.");
     }
 }
-// Hapus fungsi ini jika Anda sudah menggunakan SheetJS!
-// --- Export ke Excel (Menggunakan SheetJS/XLSX) ---
+//export
 document.getElementById("exportExcel").addEventListener("click", () => {
     if (typeof XLSX === 'undefined') {
         alert("Pustaka XLSX (SheetJS) tidak ditemukan.");
         return;
     }
-    
-    // Kolom 5 (Foto Nota) dan Kolom 6 (Aksi) dikecualikan
+  // exlude nota
     const excludeCols = [5, 6]; 
 
     try {

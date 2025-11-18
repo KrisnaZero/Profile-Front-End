@@ -2,21 +2,15 @@ import { db } from "./firebase-init.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const rekapForm = document.getElementById("rekapForm");
-
-// Ganti dengan nilai dari akun Cloudinary Anda
 const CLOUDINARY_CLOUD_NAME = "dwljxyo01"; 
 const CLOUDINARY_UPLOAD_PRESET = "Foto_Nota"; 
-// HAPUS: import { v2 as cloudinary } from 'cloudinary'; 
-// HAPUS: Konfigurasi API Key juga dihapus dari fungsi
-
 /**
- * Fungsi untuk mengunggah file ke Cloudinary menggunakan fetch API
- * @param {File} file - Objek File yang akan diunggah
- * @returns {Promise<string>} URL gambar yang diunggah
+ 
+  @param {File} 
+  @returns {Promise<string>} 
  */
 async function uploadToCloudinary(file) {
     
-    // HAPUS BAGIAN INI: SDK dan konfigurasi API Secret tidak diperlukan untuk client-side unsigned upload
     /*
     cloudinary.config({ 
         cloud_name: 'dwljxyo01', 
@@ -40,14 +34,14 @@ async function uploadToCloudinary(file) {
         );
         
         if (!response.ok) {
-            // Log detail error dari response jika ada
+            // error
             const errorData = await response.json();
             console.error("Cloudinary API Error Detail:", errorData);
             throw new Error(`Cloudinary upload failed: ${response.statusText}. Cek konsol untuk detail.`);
         }
 
         const data = await response.json();
-        return data.secure_url; // Mengembalikan URL aman dari gambar yang diunggah
+        return data.secure_url; // get url di firebase
     } catch (error) {
         console.error("Error uploading to Cloudinary:", error);
         throw new Error("Gagal mengunggah gambar. Pastikan Upload Preset 'Foto_Nota' sudah Unsigned.");
