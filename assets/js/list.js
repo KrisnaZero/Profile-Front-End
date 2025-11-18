@@ -96,27 +96,34 @@ async function loadPengiriman() {
         alert("Gagal memuat data dari database.");
     }
 }
-//export
 document.getElementById("exportExcel").addEventListener("click", () => {
     if (typeof XLSX === 'undefined') {
         alert("Pustaka XLSX (SheetJS) tidak ditemukan.");
         return;
     }
-  // exlude nota
-    const excludeCols = [5, 6]; 
+
+    const table = document.getElementById("pengirimanTable");
+    const excludeCols = [5, 6]; // indeks kolom yang mau dikecualikan (0-based)
+
+    // Buat salinan tabel sementara
+    const tempTable = table.cloneNode(true);
+
+    // Hapus kolom yang ingin dikecualikan
+    Array.from(tempTable.rows).forEach(row => {
+        // Urut dari belakang supaya indeks tetap valid saat hapus
+        excludeCols.slice().reverse().forEach(idx => {
+            if (row.cells[idx]) row.deleteCell(idx);
+        });
+    });
 
     try {
-        const wb = XLSX.utils.table_to_book(document.getElementById("pengirimanTable"), { 
-            sheet: "Pengiriman",
-            exclude_cols: excludeCols 
-        });
-        
+        const wb = XLSX.utils.table_to_book(tempTable, { sheet: "Pengiriman" });
         XLSX.writeFile(wb, "List_Pengiriman.xlsx");
         alert("Data berhasil diekspor ke Excel!");
-
     } catch (e) {
         console.error("Error exporting to Excel:", e);
         alert("Gagal mengekspor data ke Excel.");
     }
 });
+
 loadPengiriman();
