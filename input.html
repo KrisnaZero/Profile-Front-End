@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <title>Input Pengiriman</title>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav_list">
+      <div class="logo"><a href="#">MyWebsite</a></div>
+      <label for="check" class="checkbox"><i class="ri-menu-line"></i></label>
+      <input type="checkbox" id="check" />
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a class="active" href="input.html">Input Data</a></li>
+        <li><a href="list.html">List Pengiriman</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="section1">
+  <div class="section__container" style="display: flex; gap: 4
+  rem; flex-wrap: wrap;">
+    <!-- Kiri -->
+    <div style="flex:1; min-width:300px;">
+      <p class="subtitle">INPUT DATA</p>
+      <h1 class="title">Form <span>Rekap Pengiriman</span></h1>
+
+      <form id="rekapForm" class="form-box" enctype="multipart/form-data">
+        <label>Kode Pegawai</label>
+        <input type="text" id="kode" placeholder="Masukkan kode..." required />
+
+        <label>Jam Masuk</label>
+        <input type="time" id="jamMasuk" required />
+
+        <label>Jam Keluar</label>
+        <input type="time" id="jamKeluar" required />
+
+        <label>Tanggal</label>
+        <input type="date" id="tanggal" required />
+        
+        <label>Keterangan</label>
+        <input type="text" id="keterangan" placeholder="Keterangan pengiriman..." />
+
+        <label>Foto Nota</label>
+        <input type="file" id="fotoNota" accept="image/*" />
+
+        <button type="submit" class="hire__me">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p class="text-footer">Form Input Rekap Pengiriman</p>
+</footer>
+
+<script type="module" src="assets/js/input.js"></script>
+<script>
+  // Set tanggal default ke hari ini
+  const tanggalInput = document.getElementById("tanggal");
+  const today = new Date().toISOString().slice(0, 10);
+  tanggalInput.value = today;
+</script>
+</body>
+</html>

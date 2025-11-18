@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Login - LogiTrack</title>
+</head>
+<body class="login-body">
+
+    <section class="section1">
+        <div class="section__container" style="display:flex;justify-content:center;align-items:center;">
+            
+            <div class="login-container" 
+            style="max-width:400px;width:100%;background:#ffffff;padding:2rem;border-radius:20px;border:2px solid #4A55A2;">
+                
+                <h1 class="title" style="text-align:center;">Login <span>LogiTrack</span></h1>
+                <p class="description" style="text-align:center;">Masukkan username & password untuk masuk ke sistem.</p>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group" style="margin-bottom:1rem;">
+                        <label>Email</label>
+                        <input type="text" id="username" placeholder="Masukkan email" required ...
+                        style="width:100%;padding:0.7rem;border:2px solid #4A55A2;border-radius:10px;" />
+                    </div>
+
+                    <div class="form-group" style="margin-bottom:1rem;">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Masukkan password" required 
+                        style="width:100%;padding:0.7rem;border:2px solid #4A55A2;border-radius:10px;" />
+                    </div>
+
+                    <button type="submit" class="submit-btn"
+                    style="width:100%;padding:0.7rem;background:#4A55A2;color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">
+                        Login
+                    </button>
+                </form>
+
+                <p class="text-footer login-footer" style="text-align:center;margin-top:1rem;">
+                    LogiTrack © 2025
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perbaikan path JS -->
+    <script type="module" src="assets/js/login.js"></script>
+</body>
+</html>

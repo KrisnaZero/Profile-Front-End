@@ -7,14 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KrisnaZero/Profile-Front-End.git"
+    "type": "git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KrisnaZero/Profile-Front-End/issues"
+    
   },
-  "homepage": "https://github.com/KrisnaZero/Profile-Front-End#readme"
+  "dependencies": {
+    "firebase": "^12.6.0"
+  }
 }

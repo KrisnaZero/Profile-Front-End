@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <title>List Pengiriman</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+      font-family: "Poppins", sans-serif;
+    }
+    th, td {
+      padding: 0.8rem;
+      text-align: center;
+      border: 1px solid #4A55A2;
+    }
+    th {
+      background-color: #4A55A2;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    button {
+      padding: 0.4rem 0.6rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .edit-btn {
+      background-color: #4A55A2;
+      color: #fff;
+      margin-right: 5px;
+    }
+    .edit-btn:hover {
+      background-color: #3a4490;
+    }
+    .delete-btn {
+      background-color: #e74c3c;
+      color: #fff;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav_list">
+      <div class="logo"><a href="#">LogiTrack</a></div>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="input.html">Input Data</a></li>
+        <li><a class="active" href="#">List Pengiriman</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+    <section class="section-list">
+        <div class="section-list-container">
+          <div class="table-header">
+            <h1 class="title">List <span>Pengiriman</span></h1>
+            <button id="exportExcel" class="hire__me">Export ke Excel</button>
+          </div>
+      
+          <table id="pengirimanTable">
+            <thead>
+              <tr>
+                <th>Kode</th>
+                <th>Jam Masuk</th>
+                <th>Jam Keluar</th>
+                <th>Tanggal</th>
+                <th>Keterangan</th>
+                <th>Foto Nota</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Data akan diisi lewat JS -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+</main>
+
+<script type="module" src="assets/js/list.js"></script>
+</body>
+</html>

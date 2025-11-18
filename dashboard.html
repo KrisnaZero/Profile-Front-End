@@ -5,74 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Dashboard - LogiTrack</title>
+    <title>Dashboard</title>
 </head>
+
 <body>
-    <!--Header-->
-    <header>
-        <nav>
-            <div class="nav_list">
-                <div class="logo"><a href="#">LogiTrack</a></div>
-                <label for="check" class="checkbox">
-                    <i class="ri-menu-line"></i>
-                </label>
-                <input type="checkbox" id="check" />
-                <ul>
-                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                    <li><a href="input.html">Input</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
+<header>
+    <nav>
+        <div class="nav_list">
+            <div class="logo"><a href="#">MyWebsite</a></div>
+            <label for="check" class="checkbox"><i class="ri-menu-line"></i></label>
+            <input type="checkbox" id="check" />
+            <ul>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="input.html">Input Data</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main>
+<section class="section1">
+    <div class="section__container">
+
+        <article class="content">
+            <p class="subtitle">DASHBOARD</p>
+            <h1 class="title">Selamat Datang di <span>Dashboard</span></h1>
+
+            <p class="description">
+                Di halaman ini Anda dapat melihat rangkuman data, update terbaru, dan ringkasan rekap kerja.
+            </p>
+
+            <div class="action__btns">
+                <a class="hire__me" href="input.html">INPUT DATA</a>
             </div>
-        </nav>
-    </header>
+        </article>
 
-    <!-- Main Dashboard Section -->
-    <main>
-        <section class="section1">
-            <div class="section__container dashboard-container">
-                <h1 class="title">Dashboard <span>LogiTrack</span></h1>
-                <p class="description">Ringkasan data pengiriman yang telah diinput.</p>
+    </div>
+</section>
+</main>
 
-                <!-- Cards -->
-                <div class="cards">
-                    <div class="card">
-                        <h2>Total Pengiriman</h2>
-                        <p id="totalPengiriman">0</p>
-                    </div>
-
-                    <div class="card">
-                        <h2>Jam Masuk Terakhir</h2>
-                        <p id="lastIn">-</p>
-                    </div>
-
-                    <div class="card">
-                        <h2>Jam Keluar Terakhir</h2>
-                        <p id="lastOut">-</p>
-                    </div>
-                </div>
-
-                <!-- Table Data -->
-                <table class="data-table" id="dataTable">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Kode</th>
-                            <th>Jam Masuk</th>
-                            <th>Jam Keluar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Data will be injected from JS -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p class="text-footer">LogiTrack © 2025</p>
-    </footer>
-
-    <script src="dashboard.js"></script>
+<footer>
+    <p class="text-footer">Dashboard Sistem — Informasi Rekap</p>
+</footer>
 </body>
 </html>
