@@ -1,5 +1,5 @@
 {
-  "name": "profile-front-end",
+  "name": "logitrack",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,10 +12,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    
-  },
+  "bugs": {},
   "dependencies": {
+    "cloudinary": "^2.8.0",
     "firebase": "^12.6.0"
   }
 }

@@ -5,9 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
-<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <title>List Pengiriman</title>
-  <style>
+</head>
+<body>
+<header>
+  <nav>
+    <div class="nav_list">
+      <div class="logo"><a href="#">MyWebsite</a></div>
+      <label for="check" class="checkbox"><i class="ri-menu-line"></i></label>
+      <input type="checkbox" id="check" />
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="input.html">Input Data</a></li>
+        <li><a class="active" href="list.html">List Pengiriman</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+    <style>
     table {
       width: 100%;
       border-collapse: collapse;
@@ -49,23 +67,6 @@
       background-color: #c0392b;
     }
   </style>
-</head>
-<body>
-<header>
-  <nav>
-    <div class="nav_list">
-      <div class="logo"><a href="#">LogiTrack</a></div>
-      <ul>
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="input.html">Input Data</a></li>
-        <li><a class="active" href="#">List Pengiriman</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
-
-<main>
     <section class="section-list">
         <div class="section-list-container">
           <div class="table-header">
@@ -92,6 +93,10 @@
         </div>
       </section>
 </main>
+
+<footer>
+  <p class="text-footer">Form Input Rekap Pengiriman</p>
+</footer>
 
 <script type="module" src="assets/js/list.js"></script>
 </body>
