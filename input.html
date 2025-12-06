@@ -34,24 +34,31 @@
       <p class="subtitle">INPUT DATA</p>
       <h1 class="title">Form <span>Rekap Pengiriman</span></h1>
 
-      <form id="rekapForm" class="form-box" enctype="multipart/form-data">
-        <label>Kode Pegawai</label>
-        <input type="text" id="kode" placeholder="Masukkan kode..." required />
+     <form id="rekapForm" class="form-box" enctype="multipart/form-data">
+
+        <label>Tanggal</label>
+        <input type="date" id="tanggal" required />
+
+        <label>Kode Sopir</label>
+        <input type="text" id="kode" placeholder="Masukkan nama sopir..." required />
 
         <label>Jam Masuk</label>
         <input type="time" id="jamMasuk" required />
 
         <label>Jam Keluar</label>
-        <input type="time" id="jamKeluar" required />
+        <input type="time" id="jamKeluar" />
 
-        <label>Tanggal</label>
-        <input type="date" id="tanggal" required />
-        
+        <label>Invoice</label>
+        <input type="text" id="Invoice" placeholder="Contoh: SJ2511-4596" required />
+
+        <label>Nama Toko</label>
+        <input type="text" id="namaToko" placeholder="Masukkan nama toko..." required />
+
         <label>Keterangan</label>
         <input type="text" id="keterangan" placeholder="Keterangan pengiriman..." />
 
         <label>Foto Nota</label>
-        <input type="file" id="fotoNota" accept="image/*" />
+        <input type="file" id="fotoNota" accept="image/*" required />
 
         <button type="submit" class="hire__me">SUBMIT</button>
       </form>

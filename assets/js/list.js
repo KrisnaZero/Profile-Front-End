@@ -4,124 +4,98 @@ import { collection, getDocs, doc, deleteDoc, updateDoc } from "https://www.gsta
 const tableBody = document.querySelector("#pengirimanTable tbody");
 const collectionRef = collection(db, "rekap_pengiriman");
 
-// Fungsi terpisah untuk menyiapkan event listeners (Delete & Edit)
+// EVENT LISTENER
 function setupEventListeners() {
-    
-    // del
-    document.querySelectorAll(".delete-btn").forEach(btn => {
-        btn.onclick = async () => {
-            const id = btn.dataset.id;
-            if (confirm("Yakin ingin menghapus data ini?")) {
-                try {
-                    await deleteDoc(doc(db, "rekap_pengiriman", id));
-                    alert("Data berhasil dihapus.");
-                    loadPengiriman(); 
-                } catch (error) {
-                    console.error("Error deleting document:", error);
-                    alert("Gagal menghapus data.");
-                }
-            }
-        };
-    });
+  // DELETE
+  document.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.onclick = async () => {
+      const id = btn.dataset.id;
+      if (confirm("Yakin ingin menghapus data ini?")) {
+        await deleteDoc(doc(db, "rekap_pengiriman", id));
+        alert("Data berhasil dihapus.");
+        loadPengiriman();
+      }
+    };
+  });
 
-    document.querySelectorAll(".edit-btn").forEach(btn => {
-        btn.onclick = async () => {
-            const id = btn.dataset.id;
-            const row = btn.closest("tr");
+  // EDIT (versi prompt)
+  document.querySelectorAll(".edit-btn").forEach(btn => {
+    btn.onclick = async () => {
+      const id = btn.dataset.id;
+      const row = btn.closest("tr");
 
-            const kode = prompt("Edit Kode:", row.children[0].textContent);
-            const jamMasuk = prompt("Edit Jam Masuk:", row.children[1].textContent);
-            const jamKeluar = prompt("Edit Jam Keluar:", row.children[2].textContent);
-            const tanggal = prompt("Edit Tanggal:", row.children[3].textContent);
-            const keterangan = prompt("Edit Keterangan:", row.children[4].textContent);
+      const tanggal = prompt("Edit Tanggal:", row.children[0].textContent);
+      const kode = prompt("Edit Kode Sopir:", row.children[1].textContent);
+      const jamMasuk = prompt("Edit Jam Masuk:", row.children[2].textContent);
+      const jamKeluar = prompt("Edit Jam Keluar:", row.children[3].textContent);
+      const nomorNota = prompt("Edit Nomor Nota:", row.children[4].textContent);
+      const namaToko = prompt("Edit Nama Toko:", row.children[5].textContent);
+      const keterangan = prompt("Edit Keterangan:", row.children[6].textContent);
 
-            if (kode !== null && jamMasuk !== null && jamKeluar !== null && tanggal !== null) {
-                try {
-                    await updateDoc(doc(db, "rekap_pengiriman", id), {
-                        kode, jamMasuk, jamKeluar, tanggal, keterangan
-                    });
-                    alert("Data berhasil diperbarui.");
-                    loadPengiriman(); 
-                } catch (error) {
-                    console.error("Error updating document:", error);
-                    alert("Gagal memperbarui data.");
-                }
-            } else {
-                alert("Pembaruan dibatalkan.");
-            }
-        };
-    });
+      if (tanggal && kode && jamMasuk && jamKeluar && nomorNota && namaToko) {
+        await updateDoc(doc(db, "rekap_pengiriman", id), {
+          tanggal, kode, jamMasuk, jamKeluar, nomorNota, namaToko, keterangan
+        });
+
+        alert("Data berhasil diperbarui.");
+        loadPengiriman();
+      }
+    };
+  });
 }
 
-// get data
+// LOAD DATA
 async function loadPengiriman() {
-    if (!tableBody) return;
-    tableBody.innerHTML = ""; 
+  tableBody.innerHTML = "";
 
-    try {
-        const snapshot = await getDocs(collectionRef);
+  const snapshot = await getDocs(collectionRef);
+  snapshot.forEach(docSnap => {
+    const data = docSnap.data();
+    const id = docSnap.id;
 
-        snapshot.forEach(docSnap => {
-            const data = docSnap.data();
-            const fotoUrl = data.fotoURL || data.fotoNota; 
-            const docId = docSnap.id; 
-            
-            const tr = document.createElement("tr");
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${data.tanggal || "-"}</td>
+      <td>${data.kode || "-"}</td>
+      <td>${data.jamMasuk || "-"}</td>
+      <td>${data.jamKeluar || "-"}</td>
+      <td>${data.Invoice || "-"}</td>
+      <td>${data.namaToko || "-"}</td>
+      <td>${data.keterangan || "-"}</td>
 
-            tr.innerHTML = `
-                <td>${data.kode || "-"}</td>
-                <td>${data.jamMasuk || "-"}</td>
-                <td>${data.jamKeluar || "-"}</td>
-                <td>${data.tanggal || "-"}</td>
-                <td>${data.keterangan || "-"}</td>
-                
-                <td>
-                    ${fotoUrl ? 
-                        `<button class="view-btn btn-action" onclick="window.open('${fotoUrl}', '_blank')"><i class="ri-eye-line"></i> Lihat Foto</button>` 
-                        : "-"}
-                </td>
-                
-                <td>
-                    <button class="edit-btn btn-action" data-id="${docId}"><i class="ri-edit-line"></i></button>
-                    <button class="delete-btn btn-action" data-id="${docId}"><i class="ri-delete-bin-line"></i></button>
-                </td>
-            `;
-            tableBody.appendChild(tr);
-        });
+      <td>
+        ${data.fotoURL 
+          ? `<button class="view-btn btn-action" onclick="window.open('${data.fotoURL}', '_blank')"><i class='ri-eye-line'></i> Lihat</button>`
+          : "-"
+        }
+      </td>
 
-        setupEventListeners();
+      <td>
+        <button class="edit-btn btn-action" data-id="${id}"><i class='ri-edit-line'></i></button>
+        <button class="delete-btn btn-action" data-id="${id}"><i class='ri-delete-bin-line'></i></button>
+      </td>
+    `;
 
-    } catch (error) {
-        console.error("Error loading data:", error);
-        alert("Gagal memuat data dari database.");
-    }
+    tableBody.appendChild(tr);
+  });
+
+  setupEventListeners();
 }
+
+// EXPORT EXCEL — FOTO & AKSI tidak dibawa
 document.getElementById("exportExcel").addEventListener("click", () => {
-    if (typeof XLSX === 'undefined') {
-        alert("Pustaka XLSX (SheetJS) tidak ditemukan.");
-        return;
-    }
+  const table = document.getElementById("pengirimanTable");
+  const excludeCols = [7, 8];
 
-    const table = document.getElementById("pengirimanTable");
-    const excludeCols = [5, 6]; // indeks kolom yang mau dikecualikan (0-based)
+  const tempTable = table.cloneNode(true);
 
-    const tempTable = table.cloneNode(true);
+  Array.from(tempTable.rows).forEach(row => {
+    excludeCols.slice().reverse().forEach(i => row.deleteCell(i));
+  });
 
-    // Hapus kolom yang ingin dikecualikan
-    Array.from(tempTable.rows).forEach(row => {
-        excludeCols.slice().reverse().forEach(idx => {
-            if (row.cells[idx]) row.deleteCell(idx);
-        });
-    });
-
-    try {
-        const wb = XLSX.utils.table_to_book(tempTable, { sheet: "Pengiriman" });
-        XLSX.writeFile(wb, "List_Pengiriman.xlsx");
-        alert("Data berhasil diekspor ke Excel!");
-    } catch (e) {
-        console.error("Error exporting to Excel:", e);
-        alert("Gagal mengekspor data ke Excel.");
-    }
+  const wb = XLSX.utils.table_to_book(tempTable, { sheet: "Pengiriman" });
+  XLSX.writeFile(wb, "List_Pengiriman.xlsx");
+  alert("Export sukses!");
 });
 
 loadPengiriman();
